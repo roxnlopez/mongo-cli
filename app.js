@@ -3,23 +3,25 @@ var prompt = require("prompt-sync")();
 var url = "mongodb://localhost:27017/restaurant_db";
 
 
-//edit a rest
+//EDIT a rest
+ mongo.connect(url, function(err, db){
+   var collection = db.collection('restaurants');
+   var editChoice = prompt("What would you like to change?");   
+     collection.update(
+     	{name: "J's Cookies"},
+     	{ $set: {zipcode:"80203"}}
+     	);
+     console.log("Changes saved");
+});
+
+//DELETE a rest
 // mongo.connect(url, function(err, db){
 //   var collection = db.collection('restaurants');
-//   //var allChoice = prompt("Type 'all' and press enter to display all restaurants' names: ");
-//   var editChoice = prompt("Edit a restaurant");
-//     collection.update({$set:{'name':editChoice, 'address':editChoice,'url':editChoice}});
-//     console.log("editChoice");
-// });
-
-//delete a rest
-mongo.connect(url, function(err, db){
-  var collection = db.collection('restaurants');
-  //var allChoice = prompt("Type 'all' and press enter to display all restaurants' names: ");
-  var deleteChoice = prompt("Enter a restaurant to remove");
-    collection.remove({'name':'The Blind Dog Cafe'});
-    console.log("Restaruant deleted");
-  });
+//   	//var allChoice = prompt("Type 'all' and press enter to display all restaurants' names: ");
+//   var deleteChoice = prompt("Enter a restaurant to remove");
+//     collection.remove({'name':'The Blind Dog Cafe'});
+//     console.log("Restaruant deleted");
+//   });
 
 //add a rest
 // mongo.connect(url, function(err, db){
